@@ -1,22 +1,22 @@
 /* ============ Design tokens (single source of truth, light only) ============ */
 :root {
   --bg: #ffffff;
-  --bg2: #f4f7fb;
-  --bg3: #eaf0f8;
-  --bg4: #dde8f4;
-  --sky: #4A9EE8;
-  --sky2: #7EC8F0;
-  --sky3: #2A6AAA;
-  --sky4: #dbeeff;
-  --text: #111827;
-  --text2: #4b6080;
-  --text3: #7a90a8;
-  --border: #d4e2ef;
-  --border2: #b8ccdf;
+  --bg2: #fbf2f3;
+  --bg3: #f6e0e3;
+  --bg4: #f0cdd1;
+  --sky: #D4213D;
+  --sky2: #E8586B;
+  --sky3: #A11729;
+  --sky4: #fbe4e7;
+  --text: #1a1719;
+  --text2: #5c5254;
+  --text3: #8f8386;
+  --border: #f0d7da;
+  --border2: #e3b3ba;
   --green: #3DCC8E;
   --green-deep: #157A56;
-  --purple: #8B5CF6;
-  --deep: #12233d;
+  --purple: #7A0C1B;
+  --deep: #1c1c1e;
 
   --font-body: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
@@ -27,7 +27,7 @@
   --shadow-sm: 0 2px 8px rgba(17, 24, 39, 0.06);
   --shadow-md: 0 8px 24px rgba(17, 24, 39, 0.10);
   --shadow-lg: 0 16px 40px rgba(17, 24, 39, 0.14);
-  --shadow-glow: 0 12px 32px rgba(74, 158, 232, 0.22), 0 4px 10px rgba(17, 24, 39, 0.08);
+  --shadow-glow: 0 12px 32px rgba(212, 33, 61, 0.22), 0 4px 10px rgba(17, 24, 39, 0.08);
 
   --radius-btn: 8px;
   --radius-card: 14px;
@@ -127,15 +127,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 }
 
 .logo .flag-dot {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 18px;
   position: relative;
   flex-shrink: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  background: #ffffff;
 }
 .logo .flag-dot::before,
-.logo .flag-dot::after { content: ''; position: absolute; background: var(--sky); border-radius: 1px; }
-.logo .flag-dot::before { top: 0; bottom: 0; left: 34%; width: 26%; }
-.logo .flag-dot::after { left: 0; right: 0; top: 38%; height: 24%; }
+.logo .flag-dot::after { content: ''; position: absolute; left: 0; right: 0; }
+.logo .flag-dot::before { top: 0; height: 50%; background: #ffffff; }
+.logo .flag-dot::after { bottom: 0; height: 50%; background: var(--sky3); }
 
 .nav-links {
   display: flex;
@@ -196,8 +200,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
   min-height: 680px;
   padding: calc(var(--nav-h) + 3.5rem) var(--container-pad) 3.5rem;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(74, 158, 232, 0.28), transparent 65%),
-    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(74, 158, 232, 0.14), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212, 33, 61, 0.28), transparent 65%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(212, 33, 61, 0.14), transparent 60%),
     linear-gradient(180deg, var(--sky4) 0%, var(--bg) 55%);
   text-align: center;
   display: flex;
@@ -411,8 +415,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(74, 158, 232, 0.22), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(139, 92, 246, 0.16), transparent 60%);
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(212, 33, 61, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(122, 12, 27, 0.16), transparent 60%);
   pointer-events: none;
 }
 .section-dark .container { position: relative; z-index: 1; }
@@ -761,10 +765,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 .price-card.recommended {
   border: 1.5px solid var(--sky);
   background: var(--sky4);
-  box-shadow: 0 0 0 4px rgba(74, 158, 232, 0.10), var(--shadow-lg);
+  box-shadow: 0 0 0 4px rgba(212, 33, 61, 0.10), var(--shadow-lg);
   transform: scale(1.03);
 }
-.price-card.recommended:hover { transform: scale(1.03) translateY(-3px); box-shadow: 0 0 0 5px rgba(74, 158, 232, 0.14), var(--shadow-lg); }
+.price-card.recommended:hover { transform: scale(1.03) translateY(-3px); box-shadow: 0 0 0 5px rgba(212, 33, 61, 0.14), var(--shadow-lg); }
 .price-card .price-badge {
   position: absolute; top: -12px; left: 26px;
   background: var(--sky3); color: #ffffff;
@@ -881,7 +885,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 .footer-grid .logo { color: #ffffff; }
-.footer-grid .logo .flag-dot::before, .footer-grid .logo .flag-dot::after { background: var(--sky2); }
+.footer-grid .logo .flag-dot { border-color: rgba(255, 255, 255, 0.35); }
 .footer-grid h3 { color: #ffffff; font-size: 0.85rem; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
 .footer-grid ul li { margin-bottom: 10px; }
 .footer-grid a { color: rgba(255, 255, 255, 0.68); font-size: 0.9rem; font-weight: 400; transition: color 0.15s; }

@@ -681,7 +681,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 .spec-row .spec-desc strong { color: var(--text); font-weight: 700; }
 
 /* ============ Cards — dark surface, sharp corners, red left-accent bar ============ */
-.benefit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .benefit-card {
   background: var(--bg3);
   border: 1px solid var(--border);
@@ -724,8 +724,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 /* Horizontal variant */
 .compare-table-horizontal { min-width: 920px; table-layout: fixed; }
 .compare-table-horizontal td:nth-child(3) { background: transparent; }
-.compare-table-horizontal th, .compare-table-horizontal td { width: 12.5%; white-space: normal; vertical-align: top; }
-.compare-table-horizontal thead th { text-align: center; }
+.compare-table-horizontal th, .compare-table-horizontal td { white-space: normal; vertical-align: top; }
+.compare-table-horizontal thead th { text-align: center; white-space: normal; }
 .compare-table-horizontal td { color: var(--text2); font-size: 0.88rem; line-height: 1.5; text-align: center; }
 
 /* Simple two-column comparison */
@@ -740,7 +740,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 @media (max-width: 767px) { .vs-grid { grid-template-columns: 1fr; } }
 
 /* ============ Device grid ============ */
-.device-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+.device-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+
+@media (max-width: 900px) {
+  .device-grid { grid-template-columns: repeat(3, 1fr); }
+}
 .device-card {
   background: var(--bg3);
   border: 1px solid var(--border);

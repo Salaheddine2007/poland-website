@@ -128,25 +128,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
   gap: 10px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   letter-spacing: -0.01em;
   color: var(--text);
 }
 
-.logo .flag-dot {
-  width: 26px;
-  height: 18px;
-  position: relative;
+.logo-mark {
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
-  border-radius: 2px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: #ffffff;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--sky2), var(--sky3));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(227, 30, 61, 0.35);
 }
-.logo .flag-dot::before,
-.logo .flag-dot::after { content: ''; position: absolute; left: 0; right: 0; }
-.logo .flag-dot::before { top: 0; height: 50%; background: #ffffff; }
-.logo .flag-dot::after { bottom: 0; height: 50%; background: var(--sky3); }
+
+.logo-accent {
+  background: linear-gradient(135deg, var(--sky2), var(--sky3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .nav-links {
   display: flex;
@@ -811,63 +816,61 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 .trust-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
 .trust-card p { color: var(--text2); font-size: 0.9rem; font-weight: 400; }
 
-/* ============ Pricing cards — ticket-stub layout ============ */
-.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: stretch; }
+/* ============ Pricing — device toggle + 4-up duration cards ============ */
+.pricing-toggle { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 8px 0 36px; }
+.toggle-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.1em; }
+.toggle-group { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-pill); padding: 4px; gap: 2px; }
+.toggle-btn {
+  padding: 9px 20px; border-radius: var(--radius-pill); font-size: 0.88rem; font-weight: 700;
+  color: var(--text2); border: none; background: none; font-family: var(--font-body); cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.toggle-btn.active { background: linear-gradient(135deg, var(--sky2), var(--sky3)); color: #ffffff; box-shadow: var(--shadow-btn); }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch; }
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } }
+
 .price-card {
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  padding: 30px 26px;
+  padding: 28px 22px;
   display: flex; flex-direction: column;
   position: relative;
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
-.price-card.recommended {
+.price-card.popular {
   border: 1px solid var(--border2);
   background: linear-gradient(165deg, var(--sky4), var(--bg3) 55%);
   box-shadow: var(--shadow-glow);
-  transform: scale(1.03);
 }
-.price-card.recommended:hover { transform: scale(1.03) translateY(-4px); }
-.price-card .price-badge {
-  position: absolute; top: -12px; left: 26px;
+.popular-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
   background: linear-gradient(135deg, var(--sky2), var(--sky3)); color: #ffffff;
-  font-family: var(--font-mono);
-  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 5px 14px; border-radius: var(--radius-pill);
+  font-size: 0.72rem; font-weight: 700; white-space: nowrap;
+  padding: 5px 16px; border-radius: var(--radius-pill);
 }
-.price-card h3 { font-size: 1.15rem; margin-bottom: 4px; }
-.price-card .price-note { color: var(--text2); font-size: 0.88rem; font-weight: 500; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed var(--border); position: relative; }
-.price-card .price-note::before, .price-card .price-note::after {
-  content: ''; position: absolute; bottom: -7px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg);
-}
-.price-card .price-note::before { left: -26px; }
-.price-card .price-note::after { right: -26px; }
+.price-duration { font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.price-amount { font-family: var(--font-mono); font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 700; color: var(--text); line-height: 1; }
+.price-amount .price-cur { font-size: 1rem; margin-left: 4px; color: var(--text2); }
+.price-eur { font-family: var(--font-mono); font-size: 0.9rem; color: var(--sky2); font-weight: 700; margin-top: 4px; }
+.price-per { font-size: 0.8rem; color: var(--text2); margin: 6px 0 14px; }
+.price-per .price-mo { font-family: var(--font-mono); }
+.price-save { display: inline-block; background: rgba(46, 213, 115, 0.12); color: var(--green); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); margin-bottom: 18px; align-self: flex-start; }
 
-.duration-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 22px; }
-.duration-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 12px; border-radius: 4px; border: 1px solid transparent;
-}
-.duration-row.featured { background: var(--bg4); border-color: var(--border2); }
-.duration-row .d-len { font-size: 0.88rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
-.duration-row .d-len em {
-  font-style: normal; font-family: var(--font-mono); font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
-  color: #ffffff; background: var(--sky3); padding: 2px 6px; border-radius: 999px;
-}
-.duration-row .d-price { font-size: 0.98rem; font-weight: 700; color: var(--text); text-align: right; font-family: var(--font-mono); }
-.duration-row .d-price small { display: block; font-size: 0.72rem; font-weight: 500; color: var(--text2); font-family: var(--font-body); }
+.price-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; flex: 1; }
+.price-features .pf { display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem; color: var(--text2); font-weight: 400; }
+.price-features .pf svg { flex-shrink: 0; color: var(--green); margin-top: 3px; }
 
-.price-card ul { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex: 1; }
-.price-card li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.92rem; color: var(--text); font-weight: 400; }
-.price-card li svg { flex-shrink: 0; color: var(--green); margin-top: 3px; }
+.btn-full { width: 100%; }
+
+.pricing-footnote { text-align: center; color: var(--text2); font-size: 0.86rem; margin-top: 24px; }
 
 @media (max-width: 767px) {
-  .price-card.recommended { transform: none; }
-  .price-card { padding: 22px 20px; }
-  .price-card .price-note::before, .price-card .price-note::after { display: none; }
+  .price-card { padding: 22px 18px; }
 }
 
 /* ============ Legality / honesty callout ============ */
@@ -954,7 +957,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 .footer-grid .logo { color: #ffffff; }
-.footer-grid .logo .flag-dot { border-color: rgba(255, 255, 255, 0.35); }
 .footer-grid h3 { color: #ffffff; font-size: 0.85rem; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
 .footer-grid ul li { margin-bottom: 10px; }
 .footer-grid a { color: rgba(255, 255, 255, 0.68); font-size: 0.9rem; font-weight: 400; transition: color 0.15s; }

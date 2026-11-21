@@ -1030,3 +1030,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .btn:focus-visible
 }
 
 .btn-label-short { display: none; }
+
+
+/* mobile-overflow-fix: grid columns could not shrink below their content, so the 3-column device grid and the
+   pricing toggle pushed the page wider than the phone screen (410px on 390px). */
+html, body { overflow-x: clip; }
+.device-grid, .benefit-grid, .price-grid { min-width: 0; }
+.device-card, .benefit-card { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .device-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .device-card { padding: 16px 8px; }
+  .device-card span { font-size: .82rem; }
+  .device-card small { font-size: .72rem; }
+  .toggle-group { max-width: 100%; }
+}
+@media (max-width: 420px) {
+  .toggle-btn { padding: 9px 12px; font-size: .8rem; }
+  .device-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
